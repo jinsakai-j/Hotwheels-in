@@ -1,0 +1,20 @@
+# OS / editor junk
+Thumbs.db
+Desktop.ini
+.DS_Store
+.vscode/
+.idea/
+*.swp
+
+# Environment / secret
+.env
+.env.local
+*.pem
+*.key
+
+# Node (kalau nanti butuh build)
+node_modules/
+dist/
+build/
+.npm
+*.log

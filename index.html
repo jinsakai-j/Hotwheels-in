@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rajaa's Garage</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <style>
+    * { font-family: 'Inter', sans-serif }
+    .card { transition: transform 0.15s ease, box-shadow 0.15s ease }
+    .card:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.12) }
+    .modal-bg { backdrop-filter: blur(12px); background: rgba(0,0,0,0.6) }
+  </style>
+</head>
+<body class="bg-stone-50 text-stone-900 antialiased">
+
+  <!-- Nav -->
+  <header class="border-b border-stone-200 bg-white/80 backdrop-blur-md sticky top-0 z-50">
+    <div class="max-w-5xl mx-auto px-5 py-4 flex items-center justify-between">
+      <span class="font-semibold text-lg tracking-tight">Rajaa's Garage</span>
+      <div class="flex items-center gap-5">
+        <a href="#koleksi" class="text-sm text-stone-500 hover:text-stone-900 transition">Koleksi</a>
+        <a href="https://instagram.com/rajaazhrl" target="_blank"
+           class="text-sm text-stone-500 hover:text-stone-900 transition">Kontak</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="max-w-5xl mx-auto px-5 pt-20 pb-16">
+    <h1 class="text-4xl md:text-5xl font-semibold tracking-tight leading-tight">
+      Hotwheels<br>untuk dijual.
+    </h1>
+    <p class="mt-4 text-stone-500 text-base max-w-md leading-relaxed">
+      Koleksi pribadi, kondisi bagus. Kalau tertarik, hubungi lewat Instagram.
+    </p>
+    <div class="mt-8 flex gap-3">
+      <a href="#koleksi" class="bg-stone-900 text-white text-sm font-medium px-5 py-2.5 rounded-lg hover:bg-stone-800 transition">
+        Lihat Koleksi
+      </a>
+      <a href="https://instagram.com/rajaazhrl" target="_blank"
+         class="border border-stone-300 text-stone-700 text-sm font-medium px-5 py-2.5 rounded-lg hover:border-stone-400 transition">
+        Instagram
+      </a>
+    </div>
+  </section>
+
+  <!-- Koleksi -->
+  <section id="koleksi" class="max-w-5xl mx-auto px-5 pb-20">
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="text-xl font-semibold">Koleksi</h2>
+      <div class="flex gap-1.5">
+        <button onclick="filterItems('all')" data-filter="all"
+          class="filter-btn px-3 py-1.5 rounded-md text-xs font-medium bg-stone-900 text-white transition">Semua</button>
+        <button onclick="filterItems('available')" data-filter="available"
+          class="filter-btn px-3 py-1.5 rounded-md text-xs font-medium bg-stone-100 text-stone-500 hover:text-stone-900 transition">Available</button>
+        <button onclick="filterItems('sold')" data-filter="sold"
+          class="filter-btn px-3 py-1.5 rounded-md text-xs font-medium bg-stone-100 text-stone-500 hover:text-stone-900 transition">Sold</button>
+      </div>
+    </div>
+
+    <div id="product-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4"></div>
+
+    <div id="empty-state" class="hidden text-center py-20 text-stone-400">
+      <p>Belum ada foto. Upload ke folder <code class="bg-stone-200 px-1.5 py-0.5 rounded text-sm">images/</code></p>
+    </div>
+  </section>
+
+  <!-- Cara Beli -->
+  <section class="border-t border-stone-200 bg-white">
+    <div class="max-w-5xl mx-auto px-5 py-16">
+      <h2 class="text-xl font-semibold mb-8">Cara beli</h2>
+      <div class="grid sm:grid-cols-3 gap-8 text-sm text-stone-500 leading-relaxed">
+        <div>
+          <span class="block text-stone-900 font-medium mb-1">1. Pilih item</span>
+          Cari Hotwheels yang kamu suka dari koleksi di atas.
+        </div>
+        <div>
+          <span class="block text-stone-900 font-medium mb-1">2. Chat Instagram</span>
+          DM <a href="https://instagram.com/rajaazhrl" class="underline hover:text-stone-900" target="_blank">@rajaazhrl</a> untuk tanya harga & availabilitas.
+        </div>
+        <div>
+          <span class="block text-stone-900 font-medium mb-1">3. Deal & kirim</span>
+          Bayar, barang dikirim dengan packing aman.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-stone-200">
+    <div class="max-w-5xl mx-auto px-5 py-6 flex items-center justify-between text-xs text-stone-400">
+      <span>© 2026</span>
+      <a href="https://instagram.com/rajaazhrl" target="_blank" class="hover:text-stone-600 transition">@rajaazhrl</a>
+    </div>
+  </footer>
+
+  <!-- Modal -->
+  <div id="modal" class="fixed inset-0 z-50 hidden items-center justify-center modal-bg" onclick="closeModal(event)">
+    <div class="relative max-w-3xl w-full mx-4" onclick="event.stopPropagation()">
+      <button onclick="closeModal()" class="absolute -top-10 right-0 text-white/70 hover:text-white text-2xl">&times;</button>
+      <img id="modal-img" src="" alt="" class="w-full rounded-lg">
+      <div id="modal-info" class="mt-3 text-center text-white/80 text-sm"></div>
+    </div>
+  </div>
+
+  <script src="items.js?v=3"></script>
+  <script src="app.js?v=3"></script>
+</body>
+</html>
