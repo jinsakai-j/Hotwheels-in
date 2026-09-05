@@ -163,10 +163,6 @@ function openModal(item) {
           <span class="font-semibold">${item.condition || 'Mint'}</span>
         </div>
         <div class="flex justify-between border-b border-stone-100 pb-2 dark:border-stone-800">
-          <span class="text-stone-400">Tahun</span>
-          <span class="font-semibold">${item.year || '—'}</span>
-        </div>
-        <div class="flex justify-between border-b border-stone-100 pb-2 dark:border-stone-800">
           <span class="text-stone-400">Stok</span>
           <span class="font-semibold">${item.stock != null ? item.stock : '1'}</span>
         </div>
