@@ -5,4 +5,5 @@
 
 
 const items = [
+  {"name": "1", "series": "1", "price": 1, "status": "available", "image": "", "condition": "1", "year": "1", "stock": 1, "new": true},
 ];
