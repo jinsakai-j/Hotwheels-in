@@ -42,8 +42,8 @@ function render(filter = 'all') {
         <p class="text-xs text-stone-400 mt-0.5 truncate">${item.series || ''}</p>
         <div class="mt-2 flex items-center justify-between">
           ${item.status === 'available'
-            ? `<span class="text-sm font-semibold">${item.price || ''}</span>`
-            : `<span class="text-xs text-stone-400 line-through">${item.price || ''}</span>`}
+            ? `<span class="text-sm font-semibold">${item.price || 'harga menyusul'}</span>`
+            : `<span class="text-xs text-stone-400 line-through">${item.price || 'sold'}</span>`}
           ${item.status === 'sold'
             ? '<span class="text-[10px] uppercase tracking-wide text-stone-400 border border-stone-200 px-1.5 py-0.5 rounded-full">sold</span>'
             : ''}
@@ -58,8 +58,16 @@ function render(filter = 'all') {
 
 function openModal(item, card) {
   const img = card.querySelector('img');
-  if (!img) return;
 
+  if (!img) {
+    modalImg.classList.add('hidden');
+    modalInfo.textContent = `${item.name} — foto & harga menyusul`;
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    return;
+  }
+
+  modalImg.classList.remove('hidden');
   modalImg.src = img.src;
   modalImg.alt = item.name;
   modalInfo.textContent = `${item.name} - ${item.price || 'belum ada harga'} (${item.status === 'sold' ? 'sold' : 'available'})`;
